@@ -12,8 +12,9 @@
   <url>http://maven.apache.org</url>
 
   <properties>
-    <maven.compiler.target>17</maven.compiler.target>
-    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>21</maven.compiler.target>
+    <maven.compiler.source>21</maven.compiler.source>
+
     <testcontainers.version>1.19.6</testcontainers.version>
     <jackson-databind.version>2.9.4</jackson-databind.version>
     <org.jooq.version>3.20.6</org.jooq.version>
