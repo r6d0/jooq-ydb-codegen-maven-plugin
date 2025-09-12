@@ -1,0 +1,132 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>io.github.jooqydbcodegenmavenplugin</groupId>
+  <artifactId>jooq-ydb-codegen-maven-plugin</artifactId>
+  <packaging>maven-plugin</packaging>
+  <version>0.0.1</version>
+
+  <name>jooq-ydb-codegen-maven-plugin</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <maven.compiler.target>17</maven.compiler.target>
+    <maven.compiler.source>17</maven.compiler.source>
+    <testcontainers.version>1.19.6</testcontainers.version>
+    <jackson-databind.version>2.9.4</jackson-databind.version>
+    <org.jooq.version>3.20.6</org.jooq.version>
+    <flyway-core.version>10.7.1</flyway-core.version>
+    <flyway-ydb-dialect.version>1.0.0</flyway-ydb-dialect.version>
+    <ydb-jdbc-driver.version>2.3.16</ydb-jdbc-driver.version>
+    <jooq-ydb-dialect.version>1.2.1</jooq-ydb-dialect.version>
+    <lombok.version>1.18.40</lombok.version>
+    <maven-plugin-api.version>3.6.3</maven-plugin-api.version>
+    <maven-project.version>2.2.1</maven-project.version>
+    <maven-plugin-annotations.version>3.6.0</maven-plugin-annotations.version>
+    <junit-jupiter-api.version>5.12.0</junit-jupiter-api.version>
+  </properties>
+
+  <dependencies>
+    <!-- Maven -->
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-plugin-api</artifactId>
+      <version>${maven-plugin-api.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven.plugin-tools</groupId>
+      <artifactId>maven-plugin-annotations</artifactId>
+      <version>${maven-plugin-annotations.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-project</artifactId>
+      <version>${maven-project.version}</version>
+    </dependency>
+
+    <!-- Testcontainers -->
+    <dependency>
+      <groupId>org.testcontainers</groupId>
+      <artifactId>jdbc</artifactId>
+      <version>${testcontainers.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.testcontainers</groupId>
+      <artifactId>testcontainers</artifactId>
+      <version>${testcontainers.version}</version>
+    </dependency>
+
+    <!-- Flyway -->
+    <dependency>
+      <groupId>org.flywaydb</groupId>
+      <artifactId>flyway-core</artifactId>
+      <version>${flyway-core.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>${jackson-databind.version}</version>
+    </dependency>
+
+    <!-- Jooq -->
+    <dependency>
+      <groupId>org.jooq</groupId>
+      <artifactId>jooq-codegen</artifactId>
+      <version>${org.jooq.version}</version>
+    </dependency>
+
+    <!-- YDB -->
+    <dependency>
+      <groupId>tech.ydb.dialects</groupId>
+      <artifactId>flyway-ydb-dialect</artifactId>
+      <version>${flyway-ydb-dialect.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>tech.ydb.dialects</groupId>
+      <artifactId>jooq-ydb-dialect</artifactId>
+      <version>${jooq-ydb-dialect.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>tech.ydb.jdbc</groupId>
+      <artifactId>ydb-jdbc-driver</artifactId>
+      <version>${ydb-jdbc-driver.version}</version>
+    </dependency>
+
+    <!-- Lombok -->
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>${lombok.version}</version>
+      <scope>provided</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <version>${junit-jupiter-api.version}</version>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <!-- Lombok -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <annotationProcessorPaths>
+            <path>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok</artifactId>
+              <version>${lombok.version}</version>
+            </path>
+          </annotationProcessorPaths>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>

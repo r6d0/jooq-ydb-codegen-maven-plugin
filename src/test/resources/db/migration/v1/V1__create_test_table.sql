@@ -1,0 +1,1 @@
+CREATE TABLE test(test_id Uint64, PRIMARY KEY (test_id));
