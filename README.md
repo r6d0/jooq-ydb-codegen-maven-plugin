@@ -4,8 +4,26 @@ The Maven plugin for generating jOOQ records from YDB using Testcontainers.
 ## How to start
 To start using the plugin, add to pom.xml:
 ```xml
+<dependencies>
+  <dependency>
+    <groupId>org.jooq</groupId>
+    <artifactId>jooq</artifactId>
+    <version>${jooq.version}</version>
+  </dependency>
+  <dependency>
+    <groupId>tech.ydb.jdbc</groupId>
+    <artifactId>ydb-jdbc-driver</artifactId>
+    <version>${ydb-jdbc-driver.version}</version>
+  </dependency>
+  <dependency>
+    <groupId>tech.ydb.dialects</groupId>
+    <artifactId>jooq-ydb-dialect</artifactId>
+    <version>${jooq-ydb-dialect.version}</version>
+  </dependency>  
+</dependencies>
+
 <plugin>
-  <groupId>io.github.jooqydbcodegenmavenplugin</groupId>
+  <groupId>io.github.r6d0</groupId>
   <artifactId>jooq-ydb-codegen-maven-plugin</artifactId>
   <version>${jooq-ydb-codegen-maven-plugin.version}</version>
   <executions>
@@ -24,7 +42,6 @@ To start using the plugin, add to pom.xml:
     <!-- jOOQ configuration. See documentation - https://www.jooq.org/doc/latest/manual/code-generation/codegen-configuration/ -->
     <jooq>
       <generator>
-        <name>org.jooq.codegen.KotlinGenerator</name>
         <database>
           <name>tech.ydb.jooq.codegen.YdbDatabase</name>
           <excludes>.sys.*</excludes>
@@ -41,7 +58,7 @@ To start using the plugin, add to pom.xml:
 To set up a docker container, add it to pom.xml:
 ```xml
 <plugin>
-  <groupId>io.github.jooqydbcodegenmavenplugin</groupId>
+  <groupId>io.github.r6d0</groupId>
   <artifactId>jooq-ydb-codegen-maven-plugin</artifactId>
   <version>${jooq-ydb-codegen-maven-plugin.version}</version>
   <executions>
