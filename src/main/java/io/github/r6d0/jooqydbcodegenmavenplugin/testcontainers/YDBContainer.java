@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 
-package io.github.jooqydbcodegenmavenplugin.testcontainers;
+package io.github.r6d0.jooqydbcodegenmavenplugin.testcontainers;
 
 import lombok.Setter;
 import org.testcontainers.containers.JdbcDatabaseContainer;

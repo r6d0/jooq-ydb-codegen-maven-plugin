@@ -14,37 +14,31 @@
  *    limitations under the License.
  */
 
-package io.github.jooqydbcodegenmavenplugin.flyway;
+package io.github.r6d0.jooqydbcodegenmavenplugin.jooq;
 
-import io.github.jooqydbcodegenmavenplugin.PluginProperties;
+import io.github.r6d0.jooqydbcodegenmavenplugin.PluginProperties;
 import lombok.RequiredArgsConstructor;
-import org.flywaydb.core.Flyway;
-import org.flywaydb.core.api.output.MigrateResult;
+import org.jooq.codegen.GenerationTool;
 
 /**
- * The runner for flyway migration executing.
+ * The runner for jOOQ code generation executing.
  *
  * @author Andrey_Yurzanov
  */
 @RequiredArgsConstructor
-public class FlywayRunner {
+public class JooqRunner {
   private final PluginProperties properties;
 
   /**
-   * Runs flyway migration.
-   *
-   * @throws java.lang.RuntimeException when migration fails
+   * Runs jOOQ code generation.
    */
-  public void run() throws RuntimeException {
-    MigrateResult result = Flyway
-      .configure()
-      .dataSource(properties.getJdbcUrl(), properties.getUsername(), properties.getPassword())
-      .locations(properties.getLocation())
-      .load()
-      .migrate();
+  public void run() throws Exception {
+    var configuration = properties.getConfiguration();
+    GenerationTool.generate(configuration);
 
-    if (!result.success) {
-      throw new RuntimeException(result.exceptionObject);
+    var project = properties.getProject();
+    if (project != null) {
+      project.addCompileSourceRoot(configuration.getGenerator().getTarget().getDirectory());
     }
   }
 }

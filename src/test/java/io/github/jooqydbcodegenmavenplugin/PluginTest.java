@@ -16,7 +16,8 @@
 
 package io.github.jooqydbcodegenmavenplugin;
 
-import io.github.jooqydbcodegenmavenplugin.flyway.FlywayProperties;
+import io.github.r6d0.jooqydbcodegenmavenplugin.Plugin;
+import io.github.r6d0.jooqydbcodegenmavenplugin.flyway.FlywayProperties;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import org.apache.maven.plugin.MojoExecutionException;
@@ -25,7 +26,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 /**
- * Tests of {@link io.github.jooqydbcodegenmavenplugin.Plugin}.
+ * Tests of {@link Plugin}.
  *
  * @author Andrey_Yurzanov
  */

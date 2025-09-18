@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 
-package io.github.jooqydbcodegenmavenplugin.jooq;
+package io.github.r6d0.jooqydbcodegenmavenplugin.jooq;
 
 import lombok.Data;
 import org.apache.maven.plugins.annotations.Parameter;

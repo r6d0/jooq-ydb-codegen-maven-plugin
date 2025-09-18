@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 
-package io.github.jooqydbcodegenmavenplugin.flyway;
+package io.github.r6d0.jooqydbcodegenmavenplugin.flyway;
 
 import lombok.Data;
 import org.apache.maven.plugins.annotations.Parameter;

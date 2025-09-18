@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 
-package io.github.jooqydbcodegenmavenplugin.testcontainers;
+package io.github.r6d0.jooqydbcodegenmavenplugin.testcontainers;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -14,14 +14,14 @@
  *    limitations under the License.
  */
 
-package io.github.jooqydbcodegenmavenplugin;
+package io.github.r6d0.jooqydbcodegenmavenplugin;
 
-import io.github.jooqydbcodegenmavenplugin.flyway.FlywayProperties;
-import io.github.jooqydbcodegenmavenplugin.flyway.FlywayRunner;
-import io.github.jooqydbcodegenmavenplugin.jooq.JooqProperties;
-import io.github.jooqydbcodegenmavenplugin.jooq.JooqRunner;
-import io.github.jooqydbcodegenmavenplugin.testcontainers.ContainerProperties;
-import io.github.jooqydbcodegenmavenplugin.testcontainers.YDBDatabaseContainerProvider;
+import io.github.r6d0.jooqydbcodegenmavenplugin.flyway.FlywayProperties;
+import io.github.r6d0.jooqydbcodegenmavenplugin.flyway.FlywayRunner;
+import io.github.r6d0.jooqydbcodegenmavenplugin.jooq.JooqProperties;
+import io.github.r6d0.jooqydbcodegenmavenplugin.jooq.JooqRunner;
+import io.github.r6d0.jooqydbcodegenmavenplugin.testcontainers.ContainerProperties;
+import io.github.r6d0.jooqydbcodegenmavenplugin.testcontainers.YDBDatabaseContainerProvider;
 import lombok.Getter;
 import lombok.Setter;
 import org.apache.maven.plugin.AbstractMojo;

@@ -14,7 +14,7 @@
  *    limitations under the License.
  */
 
-package io.github.jooqydbcodegenmavenplugin.testcontainers;
+package io.github.r6d0.jooqydbcodegenmavenplugin.testcontainers;
 
 import java.util.Objects;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +23,7 @@ import org.testcontainers.containers.JdbcDatabaseContainerProvider;
 import org.testcontainers.utility.DockerImageName;
 
 /**
- * The provider of {@link io.github.jooqydbcodegenmavenplugin.testcontainers.YDBContainer}.
+ * The provider of {@link YDBContainer}.
  *
  * @author Andrey_Yurzanov
  */
