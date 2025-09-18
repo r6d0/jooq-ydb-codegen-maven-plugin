@@ -1,35 +1,16 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
-  <groupId>io.github.r6d0</groupId>
+  <groupId>io.github.jooqydbcodegenmavenplugin</groupId>
   <artifactId>jooq-ydb-codegen-maven-plugin</artifactId>
   <packaging>maven-plugin</packaging>
   <version>0.0.1</version>
 
   <name>jooq-ydb-codegen-maven-plugin</name>
   <description>The Maven plugin for generating jOOQ records from YDB using Testcontainers.</description>
-  <url>hhttps://github.com/r6d0/jooq-ydb-codegen-maven-plugin</url>
-  <licenses>
-    <license>
-      <name>Apache License, Version 2.0</name>
-      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
-      <distribution>repo</distribution>
-    </license>
-  </licenses>
-
-  <developers>
-    <developer>
-      <name>Andrey Yurzanov</name>
-      <email>yurzanov.andrey@gmail.com</email>
-      <url>https://github.com/r6d0</url>
-    </developer>
-  </developers>
-
-  <scm>
-    <url>https://svn.apache.org/viewvc/maven</url>
-  </scm>
+  <url>http://maven.apache.org</url>
 
   <properties>
     <maven.compiler.target>21</maven.compiler.target>
@@ -37,7 +18,7 @@
 
     <testcontainers.version>1.19.6</testcontainers.version>
     <jackson-databind.version>2.9.4</jackson-databind.version>
-    <jooq-codegen.version>3.18.18</jooq-codegen.version>
+    <org.jooq.version>3.20.6</org.jooq.version>
     <flyway-core.version>10.7.1</flyway-core.version>
     <flyway-ydb-dialect.version>1.0.0</flyway-ydb-dialect.version>
     <ydb-jdbc-driver.version>2.3.16</ydb-jdbc-driver.version>
@@ -96,7 +77,7 @@
     <dependency>
       <groupId>org.jooq</groupId>
       <artifactId>jooq-codegen</artifactId>
-      <version>${jooq-codegen.version}</version>
+      <version>${org.jooq.version}</version>
     </dependency>
 
     <!-- YDB -->
