@@ -47,6 +47,7 @@
     <maven-project.version>2.2.1</maven-project.version>
     <maven-plugin-annotations.version>3.6.0</maven-plugin-annotations.version>
     <maven-javadoc-plugin.version>3.6.2</maven-javadoc-plugin.version>
+    <maven-surefire-plugin.version>3.2.5</maven-surefire-plugin.version>
     <junit-jupiter-api.version>5.12.0</junit-jupiter-api.version>
   </properties>
 
@@ -135,7 +136,6 @@
 
   <build>
     <plugins>
-      <!-- Lombok -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -149,6 +149,12 @@
           </annotationProcessorPaths>
         </configuration>
       </plugin>
+
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>${maven-surefire-plugin.version}</version>
+      </plugin>
+
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-source-plugin</artifactId>
