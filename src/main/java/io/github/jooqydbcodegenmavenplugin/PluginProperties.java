@@ -77,7 +77,6 @@ public class PluginProperties {
     if (jdbc != null) {
       result.setDriver(jdbc.getDriver());
       result.setUrl(jdbc.getUrl());
-      result.setUrlProperty(jdbc.getUrlProperty());
       result.setUser(jdbc.getUser());
       result.setUsername(jdbc.getUsername());
       result.setPassword(jdbc.getPassword());
@@ -109,7 +108,6 @@ public class PluginProperties {
     var result = new Generator();
     if (generator != null) {
       result.setName(generator.getName());
-      result.setJava(generator.getJava());
       result.setStrategy(generator.getStrategy());
       result.setDatabase(generator.getDatabase());
       result.setGenerate(generator.getGenerate());

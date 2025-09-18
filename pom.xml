@@ -36,7 +36,7 @@
 
     <testcontainers.version>1.19.6</testcontainers.version>
     <jackson-databind.version>2.9.4</jackson-databind.version>
-    <jooq-codegen.version>3.20.6</jooq-codegen.version>
+    <jooq-codegen.version>3.18.18</jooq-codegen.version>
     <flyway-core.version>10.7.1</flyway-core.version>
     <flyway-ydb-dialect.version>1.0.0</flyway-ydb-dialect.version>
     <ydb-jdbc-driver.version>2.3.16</ydb-jdbc-driver.version>
