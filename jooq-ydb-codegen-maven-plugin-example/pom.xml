@@ -18,15 +18,19 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>io.github.r6d0</groupId>
-  <artifactId>jooq-ydb-codegen-maven-plugin-parent</artifactId>
-  <packaging>pom</packaging>
-  <version>0.0.2</version>
+  <parent>
+    <groupId>io.github.r6d0</groupId>
+    <artifactId>jooq-ydb-codegen-maven-plugin-parent</artifactId>
+    <version>0.0.2</version>
+  </parent>
 
-  <name>jooq-ydb-codegen-maven-plugin-parent</name>
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>jooq-ydb-codegen-maven-plugin-example</artifactId>
+  <packaging>jar</packaging>
+
+  <name>jooq-ydb-codegen-maven-plugin-example</name>
   <description>The Maven plugin for generating jOOQ records from YDB using Testcontainers.</description>
-  <url>https://github.com/r6d0/jooq-ydb-codegen-maven-plugin</url>
+  <url>hhttps://github.com/r6d0/jooq-ydb-codegen-maven-plugin</url>
   <licenses>
     <license>
       <name>Apache License, Version 2.0</name>
@@ -46,14 +50,4 @@
   <scm>
     <url>https://svn.apache.org/viewvc/maven</url>
   </scm>
-
-  <modules>
-    <module>jooq-ydb-codegen-maven-plugin</module>
-    <module>jooq-ydb-codegen-maven-plugin-example</module>
-  </modules>
-
-  <properties>
-    <maven.compiler.target>21</maven.compiler.target>
-    <maven.compiler.source>21</maven.compiler.source>
-  </properties>
 </project>
