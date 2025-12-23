@@ -55,20 +55,17 @@
     <maven.compiler.target>21</maven.compiler.target>
     <maven.compiler.source>21</maven.compiler.source>
 
-    <testcontainers.version>1.19.6</testcontainers.version>
+    <testcontainers.version>1.21.4</testcontainers.version>
     <jackson-databind.version>2.9.4</jackson-databind.version>
     <jooq-codegen.version>3.18.18</jooq-codegen.version>
     <flyway-core.version>10.7.1</flyway-core.version>
     <flyway-ydb-dialect.version>1.0.0</flyway-ydb-dialect.version>
     <ydb-jdbc-driver.version>2.3.16</ydb-jdbc-driver.version>
     <jooq-ydb-dialect.version>1.2.1</jooq-ydb-dialect.version>
-    <lombok.version>1.18.40</lombok.version>
     <maven-plugin-api.version>3.6.3</maven-plugin-api.version>
     <maven-project.version>2.2.1</maven-project.version>
     <maven-plugin-annotations.version>3.6.0</maven-plugin-annotations.version>
     <maven-javadoc-plugin.version>3.6.2</maven-javadoc-plugin.version>
-    <maven-surefire-plugin.version>3.2.5</maven-surefire-plugin.version>
-    <junit-jupiter-api.version>5.12.0</junit-jupiter-api.version>
   </properties>
 
   <dependencies>
@@ -142,7 +139,6 @@
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
-      <version>${lombok.version}</version>
       <scope>provided</scope>
     </dependency>
 
@@ -150,7 +146,6 @@
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>
-      <version>${junit-jupiter-api.version}</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
@@ -169,11 +164,6 @@
             </path>
           </annotationProcessorPaths>
         </configuration>
-      </plugin>
-
-      <plugin>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>${maven-surefire-plugin.version}</version>
       </plugin>
 
       <plugin>

@@ -26,7 +26,7 @@
 
   <modelVersion>4.0.0</modelVersion>
   <artifactId>jooq-ydb-codegen-maven-plugin-example</artifactId>
-  <packaging>jar</packaging>
+  <packaging>pom</packaging>
 
   <name>jooq-ydb-codegen-maven-plugin-example</name>
   <description>The Maven plugin for generating jOOQ records from YDB using Testcontainers.</description>
@@ -50,4 +50,8 @@
   <scm>
     <url>https://svn.apache.org/viewvc/maven</url>
   </scm>
+
+  <modules>
+    <module>jooq-ydb-codegen-maven-plugin-example-flyway</module>
+  </modules>
 </project>

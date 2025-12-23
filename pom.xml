@@ -55,5 +55,65 @@
   <properties>
     <maven.compiler.target>21</maven.compiler.target>
     <maven.compiler.source>21</maven.compiler.source>
+
+    <jooq.version>3.18.18</jooq.version>
+    <ydb-jdbc-driver.version>2.3.16</ydb-jdbc-driver.version>
+    <jooq-ydb-dialect.version>1.0.0</jooq-ydb-dialect.version>
+    <lombok.version>1.18.40</lombok.version>
+    <maven-surefire-plugin.version>3.2.5</maven-surefire-plugin.version>
+    <junit-jupiter-api.version>5.12.0</junit-jupiter-api.version>
   </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.jooq</groupId>
+        <artifactId>jooq</artifactId>
+        <version>${jooq.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>tech.ydb.jdbc</groupId>
+        <artifactId>ydb-jdbc-driver</artifactId>
+        <version>${ydb-jdbc-driver.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>tech.ydb.dialects</groupId>
+        <artifactId>jooq-ydb-dialect</artifactId>
+        <version>${jooq-ydb-dialect.version}</version>
+      </dependency>
+
+      <!-- Lombok -->
+      <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>${lombok.version}</version>
+        <scope>provided</scope>
+      </dependency>
+
+      <!-- JUnit -->
+      <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-api</artifactId>
+        <version>${junit-jupiter-api.version}</version>
+        <scope>test</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>${maven-surefire-plugin.version}</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
+    <plugins>
+      <plugin>
+        <artifactId>maven-surefire-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
 </project>
