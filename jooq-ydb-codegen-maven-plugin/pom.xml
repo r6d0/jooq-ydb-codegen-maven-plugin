@@ -1,0 +1,207 @@
+<!--
+  ~    Copyright 2025 Andrey Yurzanov
+  ~
+  ~    Licensed under the Apache License, Version 2.0 (the "License");
+  ~    you may not use this file except in compliance with the License.
+  ~    You may obtain a copy of the License at
+  ~
+  ~        http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~    Unless required by applicable law or agreed to in writing, software
+  ~    distributed under the License is distributed on an "AS IS" BASIS,
+  ~    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~    See the License for the specific language governing permissions and
+  ~    limitations under the License.
+  -->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  <parent>
+    <groupId>io.github.r6d0</groupId>
+    <artifactId>jooq-ydb-codegen-maven-plugin-parent</artifactId>
+    <version>0.0.2</version>
+  </parent>
+
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>jooq-ydb-codegen-maven-plugin</artifactId>
+  <packaging>maven-plugin</packaging>
+
+  <name>jooq-ydb-codegen-maven-plugin</name>
+  <description>The Maven plugin for generating jOOQ records from YDB using Testcontainers.</description>
+  <url>hhttps://github.com/r6d0/jooq-ydb-codegen-maven-plugin</url>
+  <licenses>
+    <license>
+      <name>Apache License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+
+  <developers>
+    <developer>
+      <name>Andrey Yurzanov</name>
+      <email>yurzanov.andrey@gmail.com</email>
+      <url>https://github.com/r6d0</url>
+    </developer>
+  </developers>
+
+  <scm>
+    <url>https://svn.apache.org/viewvc/maven</url>
+  </scm>
+
+  <properties>
+    <maven.compiler.target>21</maven.compiler.target>
+    <maven.compiler.source>21</maven.compiler.source>
+
+    <testcontainers.version>1.21.4</testcontainers.version>
+    <jackson-databind.version>2.9.4</jackson-databind.version>
+    <jooq-codegen.version>3.18.18</jooq-codegen.version>
+    <flyway-core.version>10.7.1</flyway-core.version>
+    <flyway-ydb-dialect.version>1.0.0</flyway-ydb-dialect.version>
+    <ydb-jdbc-driver.version>2.3.16</ydb-jdbc-driver.version>
+    <jooq-ydb-dialect.version>1.2.1</jooq-ydb-dialect.version>
+    <maven-plugin-api.version>3.6.3</maven-plugin-api.version>
+    <maven-project.version>2.2.1</maven-project.version>
+    <maven-plugin-annotations.version>3.6.0</maven-plugin-annotations.version>
+    <maven-javadoc-plugin.version>3.6.2</maven-javadoc-plugin.version>
+  </properties>
+
+  <dependencies>
+    <!-- Maven -->
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-plugin-api</artifactId>
+      <version>${maven-plugin-api.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven.plugin-tools</groupId>
+      <artifactId>maven-plugin-annotations</artifactId>
+      <version>${maven-plugin-annotations.version}</version>
+      <scope>provided</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.maven</groupId>
+      <artifactId>maven-project</artifactId>
+      <version>${maven-project.version}</version>
+    </dependency>
+
+    <!-- Testcontainers -->
+    <dependency>
+      <groupId>org.testcontainers</groupId>
+      <artifactId>jdbc</artifactId>
+      <version>${testcontainers.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.testcontainers</groupId>
+      <artifactId>testcontainers</artifactId>
+      <version>${testcontainers.version}</version>
+    </dependency>
+
+    <!-- Flyway -->
+    <dependency>
+      <groupId>org.flywaydb</groupId>
+      <artifactId>flyway-core</artifactId>
+      <version>${flyway-core.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>${jackson-databind.version}</version>
+    </dependency>
+
+    <!-- Jooq -->
+    <dependency>
+      <groupId>org.jooq</groupId>
+      <artifactId>jooq-codegen</artifactId>
+      <version>${jooq-codegen.version}</version>
+    </dependency>
+
+    <!-- YDB -->
+    <dependency>
+      <groupId>tech.ydb.dialects</groupId>
+      <artifactId>flyway-ydb-dialect</artifactId>
+      <version>${flyway-ydb-dialect.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>tech.ydb.dialects</groupId>
+      <artifactId>jooq-ydb-dialect</artifactId>
+      <version>${jooq-ydb-dialect.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>tech.ydb.jdbc</groupId>
+      <artifactId>ydb-jdbc-driver</artifactId>
+      <version>${ydb-jdbc-driver.version}</version>
+    </dependency>
+
+    <!-- Lombok -->
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <scope>provided</scope>
+    </dependency>
+
+    <!-- JUnit -->
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <annotationProcessorPaths>
+            <path>
+              <groupId>org.projectlombok</groupId>
+              <artifactId>lombok</artifactId>
+              <version>${lombok.version}</version>
+            </path>
+          </annotationProcessorPaths>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-source-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>attach-sources</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>${maven-javadoc-plugin.version}</version>
+        <executions>
+          <execution>
+            <id>attach-javadocs</id>
+            <goals>
+              <goal>jar</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+  <reporting>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <version>${maven-javadoc-plugin.version}</version>
+      </plugin>
+    </plugins>
+  </reporting>
+</project>

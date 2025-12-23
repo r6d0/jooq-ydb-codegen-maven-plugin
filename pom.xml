@@ -20,13 +20,13 @@
 
   <modelVersion>4.0.0</modelVersion>
   <groupId>io.github.r6d0</groupId>
-  <artifactId>jooq-ydb-codegen-maven-plugin</artifactId>
-  <packaging>maven-plugin</packaging>
-  <version>0.0.1</version>
+  <artifactId>jooq-ydb-codegen-maven-plugin-parent</artifactId>
+  <packaging>pom</packaging>
+  <version>0.0.2</version>
 
-  <name>jooq-ydb-codegen-maven-plugin</name>
+  <name>jooq-ydb-codegen-maven-plugin-parent</name>
   <description>The Maven plugin for generating jOOQ records from YDB using Testcontainers.</description>
-  <url>hhttps://github.com/r6d0/jooq-ydb-codegen-maven-plugin</url>
+  <url>https://github.com/r6d0/jooq-ydb-codegen-maven-plugin</url>
   <licenses>
     <license>
       <name>Apache License, Version 2.0</name>
@@ -47,167 +47,73 @@
     <url>https://svn.apache.org/viewvc/maven</url>
   </scm>
 
+  <modules>
+    <module>jooq-ydb-codegen-maven-plugin</module>
+    <module>jooq-ydb-codegen-maven-plugin-example</module>
+  </modules>
+
   <properties>
     <maven.compiler.target>21</maven.compiler.target>
     <maven.compiler.source>21</maven.compiler.source>
 
-    <testcontainers.version>1.19.6</testcontainers.version>
-    <jackson-databind.version>2.9.4</jackson-databind.version>
-    <jooq-codegen.version>3.18.18</jooq-codegen.version>
-    <flyway-core.version>10.7.1</flyway-core.version>
-    <flyway-ydb-dialect.version>1.0.0</flyway-ydb-dialect.version>
+    <jooq.version>3.18.18</jooq.version>
     <ydb-jdbc-driver.version>2.3.16</ydb-jdbc-driver.version>
-    <jooq-ydb-dialect.version>1.2.1</jooq-ydb-dialect.version>
+    <jooq-ydb-dialect.version>1.0.0</jooq-ydb-dialect.version>
     <lombok.version>1.18.40</lombok.version>
-    <maven-plugin-api.version>3.6.3</maven-plugin-api.version>
-    <maven-project.version>2.2.1</maven-project.version>
-    <maven-plugin-annotations.version>3.6.0</maven-plugin-annotations.version>
-    <maven-javadoc-plugin.version>3.6.2</maven-javadoc-plugin.version>
     <maven-surefire-plugin.version>3.2.5</maven-surefire-plugin.version>
     <junit-jupiter-api.version>5.12.0</junit-jupiter-api.version>
   </properties>
 
-  <dependencies>
-    <!-- Maven -->
-    <dependency>
-      <groupId>org.apache.maven</groupId>
-      <artifactId>maven-plugin-api</artifactId>
-      <version>${maven-plugin-api.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.maven.plugin-tools</groupId>
-      <artifactId>maven-plugin-annotations</artifactId>
-      <version>${maven-plugin-annotations.version}</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.maven</groupId>
-      <artifactId>maven-project</artifactId>
-      <version>${maven-project.version}</version>
-    </dependency>
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.jooq</groupId>
+        <artifactId>jooq</artifactId>
+        <version>${jooq.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>tech.ydb.jdbc</groupId>
+        <artifactId>ydb-jdbc-driver</artifactId>
+        <version>${ydb-jdbc-driver.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>tech.ydb.dialects</groupId>
+        <artifactId>jooq-ydb-dialect</artifactId>
+        <version>${jooq-ydb-dialect.version}</version>
+      </dependency>
 
-    <!-- Testcontainers -->
-    <dependency>
-      <groupId>org.testcontainers</groupId>
-      <artifactId>jdbc</artifactId>
-      <version>${testcontainers.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.testcontainers</groupId>
-      <artifactId>testcontainers</artifactId>
-      <version>${testcontainers.version}</version>
-    </dependency>
+      <!-- Lombok -->
+      <dependency>
+        <groupId>org.projectlombok</groupId>
+        <artifactId>lombok</artifactId>
+        <version>${lombok.version}</version>
+        <scope>provided</scope>
+      </dependency>
 
-    <!-- Flyway -->
-    <dependency>
-      <groupId>org.flywaydb</groupId>
-      <artifactId>flyway-core</artifactId>
-      <version>${flyway-core.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>com.fasterxml.jackson.core</groupId>
-      <artifactId>jackson-databind</artifactId>
-      <version>${jackson-databind.version}</version>
-    </dependency>
-
-    <!-- Jooq -->
-    <dependency>
-      <groupId>org.jooq</groupId>
-      <artifactId>jooq-codegen</artifactId>
-      <version>${jooq-codegen.version}</version>
-    </dependency>
-
-    <!-- YDB -->
-    <dependency>
-      <groupId>tech.ydb.dialects</groupId>
-      <artifactId>flyway-ydb-dialect</artifactId>
-      <version>${flyway-ydb-dialect.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>tech.ydb.dialects</groupId>
-      <artifactId>jooq-ydb-dialect</artifactId>
-      <version>${jooq-ydb-dialect.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>tech.ydb.jdbc</groupId>
-      <artifactId>ydb-jdbc-driver</artifactId>
-      <version>${ydb-jdbc-driver.version}</version>
-    </dependency>
-
-    <!-- Lombok -->
-    <dependency>
-      <groupId>org.projectlombok</groupId>
-      <artifactId>lombok</artifactId>
-      <version>${lombok.version}</version>
-      <scope>provided</scope>
-    </dependency>
-
-    <!-- JUnit -->
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-api</artifactId>
-      <version>${junit-jupiter-api.version}</version>
-      <scope>test</scope>
-    </dependency>
-  </dependencies>
+      <!-- JUnit -->
+      <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-api</artifactId>
+        <version>${junit-jupiter-api.version}</version>
+        <scope>test</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 
   <build>
+    <pluginManagement>
+      <plugins>
+        <plugin>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>${maven-surefire-plugin.version}</version>
+        </plugin>
+      </plugins>
+    </pluginManagement>
+
     <plugins>
       <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <configuration>
-          <annotationProcessorPaths>
-            <path>
-              <groupId>org.projectlombok</groupId>
-              <artifactId>lombok</artifactId>
-              <version>${lombok.version}</version>
-            </path>
-          </annotationProcessorPaths>
-        </configuration>
-      </plugin>
-
-      <plugin>
         <artifactId>maven-surefire-plugin</artifactId>
-        <version>${maven-surefire-plugin.version}</version>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-source-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>attach-sources</id>
-            <goals>
-              <goal>jar</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-javadoc-plugin</artifactId>
-        <version>${maven-javadoc-plugin.version}</version>
-        <executions>
-          <execution>
-            <id>attach-javadocs</id>
-            <goals>
-              <goal>jar</goal>
-            </goals>
-          </execution>
-        </executions>
       </plugin>
     </plugins>
   </build>
-
-  <reporting>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-javadoc-plugin</artifactId>
-        <version>${maven-javadoc-plugin.version}</version>
-      </plugin>
-    </plugins>
-  </reporting>
 </project>

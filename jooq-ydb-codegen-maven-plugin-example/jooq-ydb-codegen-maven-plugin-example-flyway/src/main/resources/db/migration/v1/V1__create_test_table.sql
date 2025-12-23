@@ -1,0 +1,1 @@
+CREATE TABLE test(id Uint64, text Utf8, insert_date date, PRIMARY KEY (id));
