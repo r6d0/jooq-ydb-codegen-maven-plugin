@@ -16,16 +16,21 @@
 
 package io.github.r6d0.jooqydbcodegenmavenplugin;
 
-import io.github.r6d0.jooqydbcodegenmavenplugin.flyway.FlywayProperties;
-import io.github.r6d0.jooqydbcodegenmavenplugin.jooq.JooqProperties;
-import io.github.r6d0.jooqydbcodegenmavenplugin.testcontainers.ContainerProperties;
+import io.github.r6d0.jooqydbcodegenmavenplugin.flyway.FlywayPluginProperties;
+import io.github.r6d0.jooqydbcodegenmavenplugin.jooq.JooqPluginProperties;
+import io.github.r6d0.jooqydbcodegenmavenplugin.testcontainers.ContainerPluginProperties;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.apache.maven.project.MavenProject;
+import org.jooq.codegen.DefaultGeneratorStrategy;
 import org.jooq.meta.jaxb.Configuration;
 import org.jooq.meta.jaxb.Generator;
 import org.jooq.meta.jaxb.Jdbc;
+import org.jooq.meta.jaxb.Strategy;
 import org.jooq.meta.jaxb.Target;
+import tech.ydb.jooq.codegen.YdbGeneratorStrategy;
+
+import java.util.Objects;
 
 /**
  * The properties of the plugin.
@@ -36,9 +41,11 @@ import org.jooq.meta.jaxb.Target;
 @RequiredArgsConstructor
 public class PluginProperties {
   private final MavenProject project;
-  private final ContainerProperties container;
-  private final FlywayProperties flyway;
-  private final JooqProperties jooq;
+  private final ContainerPluginProperties container;
+  private final FlywayPluginProperties flyway;
+  private final JooqPluginProperties jooq;
+
+  private static final String DEFAULT_GENERATOR_STRATEGY = DefaultGeneratorStrategy.class.getCanonicalName();
 
   /**
    * Returns the location of the flyway scripts.
@@ -55,7 +62,9 @@ public class PluginProperties {
    * @return JDBC URL
    */
   public String getJdbcUrl() {
-    return container.getJdbcUrl();
+    return container
+      .getContainerProperties()
+      .getJdbcUrl();
   }
 
   /**
@@ -102,12 +111,21 @@ public class PluginProperties {
       result.setProperties(jdbc.getProperties());
     }
 
+    // TODO. Method 'getContainerProperties' creates a new instance of 'ContainerProperties' every call.
     if (result.getDriver() == null) {
-      result.setDriver(container.getDriver());
+      result.setDriver(
+        container
+          .getContainerProperties()
+          .getDriver()
+      );
     }
 
     if (result.getUrl() == null) {
-      result.setUrl(container.getJdbcUrl());
+      result.setUrl(
+        container
+          .getContainerProperties()
+          .getJdbcUrl()
+      );
     }
 
     if (result.getUsername() == null) {
@@ -128,6 +146,17 @@ public class PluginProperties {
       result.setDatabase(generator.getDatabase());
       result.setGenerate(generator.getGenerate());
       result.setTarget(generator.getTarget());
+    }
+
+    var strategy = result.getStrategy();
+    if (strategy == null) {
+      strategy = new Strategy();
+      result.setStrategy(strategy);
+    }
+
+    // Sets YdbGeneratorStrategy as default strategy
+    if (Objects.equals(strategy.getName(), DEFAULT_GENERATOR_STRATEGY)) {
+      strategy.setName(YdbGeneratorStrategy.class.getCanonicalName());
     }
 
     if (result.getTarget() == null) {

@@ -32,7 +32,7 @@ class GenerateTest {
   void checkGeneratedFilesTest() {
     var basePath = System.getenv("GENERATE_DIRECTORY");
 
-    Assertions.assertTrue(Files.exists(Paths.get(basePath, "Test.class")));
-    Assertions.assertTrue(Files.exists(Paths.get(basePath, "records/TestRecord.class")));
+    Assertions.assertTrue(Files.exists(Paths.get(basePath, "FlywayTest.class")));
+    Assertions.assertTrue(Files.exists(Paths.get(basePath, "records/FlywayTestRecord.class")));
   }
 }

@@ -17,7 +17,7 @@
 package io.github.jooqydbcodegenmavenplugin;
 
 import io.github.r6d0.jooqydbcodegenmavenplugin.Plugin;
-import io.github.r6d0.jooqydbcodegenmavenplugin.flyway.FlywayProperties;
+import io.github.r6d0.jooqydbcodegenmavenplugin.flyway.FlywayPluginProperties;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import org.apache.maven.plugin.MojoExecutionException;
@@ -41,7 +41,7 @@ class PluginTest {
   @Test
   void executeFlywaySuccessTest() throws MojoExecutionException, MojoFailureException {
     Plugin plugin = new Plugin();
-    plugin.setFlyway(new FlywayProperties());
+    plugin.setFlyway(new FlywayPluginProperties());
 
     plugin.execute();
 

@@ -16,12 +16,12 @@
 
 package io.github.r6d0.jooqydbcodegenmavenplugin.testcontainers;
 
-import java.util.List;
-import java.util.stream.Collectors;
 import lombok.Data;
-import org.apache.maven.plugins.annotations.Parameter;
 import org.testcontainers.utility.DockerImageName;
 import tech.ydb.jdbc.YdbDriver;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * The properties of the docker container.
@@ -30,23 +30,12 @@ import tech.ydb.jdbc.YdbDriver;
  */
 @Data
 public class ContainerProperties {
-  @Parameter(required = true)
-  private String image = "ydbplatform/local-ydb:latest";
-  @Parameter
-  private String username = "";
-  @Parameter
-  private String password = "";
-  @Parameter
-  private List<String> ports = List.of(
-    DEFAULT_JDBC_PORT + PORT_SEPARATOR + DEFAULT_JDBC_PORT,
-    "2135:2135",
-    "8765:8765",
-    "9092:9092"
-  );
-  @Parameter
-  private String host = "localhost";
-  @Parameter
-  private String database = "local";
+  private String image = DEFAULT_IMAGE;
+  private String username = DEFAULT_USERNAME;
+  private String password = DEFAULT_PASSWORD;
+  private List<String> ports = DEFAULT_PORTS;
+  private String host = DEFAULT_HOST;
+  private String database = DEFAULT_DATABASE;
 
   private static final int PORT_SIZE = 2;
   private static final int JDBC_PORT_INDEX = 0;
@@ -57,9 +46,39 @@ public class ContainerProperties {
   private static final String PATH_SEPARATOR = "/";
 
   /**
-   * Returns instance of the {@link org.testcontainers.utility.DockerImageName}.
+   * The default container image.
+   */
+  public static final String DEFAULT_IMAGE = "ydbplatform/local-ydb:latest";
+  /**
+   * The default database username.
+   */
+  public static final String DEFAULT_USERNAME = "";
+  /**
+   * The default database password.
+   */
+  public static final String DEFAULT_PASSWORD = "";
+  /**
+   * The default database host.
+   */
+  public static final String DEFAULT_HOST = "localhost";
+  /**
+   * The default database name.
+   */
+  public static final String DEFAULT_DATABASE = "local";
+  /**
+   * The default database ports.
+   */
+  public static final List<String> DEFAULT_PORTS = List.of(
+    DEFAULT_JDBC_PORT + PORT_SEPARATOR + DEFAULT_JDBC_PORT,
+    "2135:2135",
+    "8765:8765",
+    "9092:9092"
+  );
+
+  /**
+   * Returns instance of the {@link DockerImageName}.
    *
-   * @return instance of the {@link org.testcontainers.utility.DockerImageName}
+   * @return instance of the {@link DockerImageName}
    */
   public DockerImageName getDockerImage() {
     return DockerImageName.parse(image);
