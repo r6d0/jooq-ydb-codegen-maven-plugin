@@ -98,7 +98,7 @@ class CrudDirectoryTest {
   }
 
   @Test
-  void updateTest() throws SQLException {
+  void updateTest() {
     context
       .insertInto(FLYWAY_DIRECTORY_TEST)
       .columns(FLYWAY_DIRECTORY_TEST.ID, FLYWAY_DIRECTORY_TEST.TEXT, FLYWAY_DIRECTORY_TEST.INSERT_DATE)

@@ -2,7 +2,7 @@
 The Maven plugin for generating jOOQ records from YDB using Testcontainers.
 
 ## How to start
-To start using the plugin, add to pom.xml:
+To start using the plugin, add it to pom.xml:
 ```xml
 <dependencies>
   <dependency>
