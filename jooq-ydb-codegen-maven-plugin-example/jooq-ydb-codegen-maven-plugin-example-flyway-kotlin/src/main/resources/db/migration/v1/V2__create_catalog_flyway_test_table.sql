@@ -1,0 +1,1 @@
+CREATE TABLE `directory_test/flyway_directory_test`(id Int64, text Utf8, insert_date date, PRIMARY KEY (id));

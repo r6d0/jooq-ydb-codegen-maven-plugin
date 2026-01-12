@@ -53,5 +53,6 @@
 
   <modules>
     <module>jooq-ydb-codegen-maven-plugin-example-flyway</module>
+    <module>jooq-ydb-codegen-maven-plugin-example-flyway-kotlin</module>
   </modules>
 </project>

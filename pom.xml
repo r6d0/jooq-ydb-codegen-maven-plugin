@@ -54,8 +54,8 @@
   </modules>
 
   <properties>
-    <maven.compiler.target>21</maven.compiler.target>
     <maven.compiler.source>21</maven.compiler.source>
+    <maven.compiler.target>21</maven.compiler.target>
 
     <jooq.version>3.19.0</jooq.version>
     <flyway-core.version>10.7.1</flyway-core.version>
