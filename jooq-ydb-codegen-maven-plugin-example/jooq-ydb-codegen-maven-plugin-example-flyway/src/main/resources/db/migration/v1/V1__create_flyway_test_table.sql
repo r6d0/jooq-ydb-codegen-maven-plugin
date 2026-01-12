@@ -1,0 +1,1 @@
+CREATE TABLE flyway_test(id Int64, text Utf8, insert_date date, PRIMARY KEY (id));

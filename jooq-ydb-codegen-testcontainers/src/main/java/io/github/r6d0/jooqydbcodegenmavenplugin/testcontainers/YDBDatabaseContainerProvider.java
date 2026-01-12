@@ -16,11 +16,12 @@
 
 package io.github.r6d0.jooqydbcodegenmavenplugin.testcontainers;
 
-import java.util.Objects;
 import lombok.RequiredArgsConstructor;
 import org.testcontainers.containers.JdbcDatabaseContainer;
 import org.testcontainers.containers.JdbcDatabaseContainerProvider;
 import org.testcontainers.utility.DockerImageName;
+
+import java.util.Objects;
 
 /**
  * The provider of {@link YDBContainer}.

@@ -53,9 +53,28 @@
 
   <dependencies>
     <dependency>
+      <groupId>io.github.r6d0</groupId>
+      <artifactId>jooq-ydb-codegen-testcontainers</artifactId>
+      <version>${project.version}</version>
+    </dependency>
+
+    <!-- Flyway -->
+    <dependency>
+      <groupId>org.flywaydb</groupId>
+      <artifactId>flyway-core</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+    </dependency>
+
+    <!-- Jooq -->
+    <dependency>
       <groupId>org.jooq</groupId>
       <artifactId>jooq</artifactId>
     </dependency>
+
+    <!-- YDB -->
     <dependency>
       <groupId>tech.ydb.jdbc</groupId>
       <artifactId>ydb-jdbc-driver</artifactId>
@@ -63,6 +82,10 @@
     <dependency>
       <groupId>tech.ydb.dialects</groupId>
       <artifactId>jooq-ydb-dialect</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>tech.ydb.dialects</groupId>
+      <artifactId>flyway-ydb-dialect</artifactId>
     </dependency>
 
     <!-- JUnit -->
@@ -112,6 +135,7 @@
         <artifactId>maven-surefire-plugin</artifactId>
         <configuration>
           <environmentVariables>
+            <FLYWAY_DIRECTORY>filesystem:${project.basedir}/src/main/resources/db/migration</FLYWAY_DIRECTORY>
             <GENERATE_DIRECTORY>${project.build.outputDirectory}/io/github/r6d0/jooqydbcodegenmavenplugin/default_schema/tables</GENERATE_DIRECTORY>
           </environmentVariables>
         </configuration>

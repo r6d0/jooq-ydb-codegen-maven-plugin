@@ -16,11 +16,11 @@
 
 package io.github.r6d0.jooqydbcodegenmavenplugin;
 
-import io.github.r6d0.jooqydbcodegenmavenplugin.flyway.FlywayProperties;
+import io.github.r6d0.jooqydbcodegenmavenplugin.flyway.FlywayPluginProperties;
 import io.github.r6d0.jooqydbcodegenmavenplugin.flyway.FlywayRunner;
-import io.github.r6d0.jooqydbcodegenmavenplugin.jooq.JooqProperties;
+import io.github.r6d0.jooqydbcodegenmavenplugin.jooq.JooqPluginProperties;
 import io.github.r6d0.jooqydbcodegenmavenplugin.jooq.JooqRunner;
-import io.github.r6d0.jooqydbcodegenmavenplugin.testcontainers.ContainerProperties;
+import io.github.r6d0.jooqydbcodegenmavenplugin.testcontainers.ContainerPluginProperties;
 import io.github.r6d0.jooqydbcodegenmavenplugin.testcontainers.YDBDatabaseContainerProvider;
 import lombok.Getter;
 import lombok.Setter;
@@ -44,16 +44,16 @@ public class Plugin extends AbstractMojo {
   @Parameter(property = "project", required = true, readonly = true)
   private MavenProject project;
   @Parameter
-  private FlywayProperties flyway;
+  private FlywayPluginProperties flyway;
   @Parameter
-  private ContainerProperties container = new ContainerProperties();
+  private ContainerPluginProperties container = new ContainerPluginProperties();
   @Parameter
-  private JooqProperties jooq = new JooqProperties();
+  private JooqPluginProperties jooq = new JooqPluginProperties();
 
   @Override
   public void execute() throws MojoExecutionException, MojoFailureException {
     var log = getLog();
-    var provider = new YDBDatabaseContainerProvider(container);
+    var provider = new YDBDatabaseContainerProvider(container.getContainerProperties());
     try (var image = provider.newInstance()) {
       image.start();
       log.info("YDB container is started");

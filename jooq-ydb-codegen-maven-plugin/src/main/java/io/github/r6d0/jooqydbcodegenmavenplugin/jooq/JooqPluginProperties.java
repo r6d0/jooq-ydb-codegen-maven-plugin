@@ -14,18 +14,22 @@
  *    limitations under the License.
  */
 
-package io.github.r6d0.jooqydbcodegenmavenplugin.flyway;
+package io.github.r6d0.jooqydbcodegenmavenplugin.jooq;
 
 import lombok.Data;
 import org.apache.maven.plugins.annotations.Parameter;
+import org.jooq.meta.jaxb.Generator;
+import org.jooq.meta.jaxb.Jdbc;
 
 /**
- * The properties of the flyway migration tool.
+ * The properties of jOOQ code generator.
  *
  * @author Andrey_Yurzanov
  */
 @Data
-public class FlywayProperties {
-  @Parameter(required = true)
-  private String location = "classpath:db/migration";
+public class JooqPluginProperties {
+  @Parameter
+  private Jdbc jdbc;
+  @Parameter
+  private Generator generator;
 }
