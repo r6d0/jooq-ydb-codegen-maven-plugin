@@ -21,7 +21,7 @@
   <parent>
     <groupId>io.github.r6d0</groupId>
     <artifactId>jooq-ydb-codegen-maven-plugin-parent</artifactId>
-    <version>0.0.2</version>
+    <version>0.0.3</version>
   </parent>
 
   <modelVersion>4.0.0</modelVersion>
@@ -55,6 +55,15 @@
     <maven.compiler.target>21</maven.compiler.target>
     <maven.compiler.source>21</maven.compiler.source>
 
+    <jooq.version>3.19.0</jooq.version>
+    <flyway-core.version>10.7.1</flyway-core.version>
+    <flyway-ydb-dialect.version>1.0.0</flyway-ydb-dialect.version>
+    <jackson-databind.version>2.9.4</jackson-databind.version>
+    <testcontainers.version>1.21.4</testcontainers.version>
+    <ydb-jdbc-driver.version>2.3.16</ydb-jdbc-driver.version>
+    <jooq-ydb-dialect.version>1.2.1</jooq-ydb-dialect.version>
+    <lombok.version>1.18.40</lombok.version>
+    <junit-jupiter-api.version>5.12.0</junit-jupiter-api.version>
     <maven-plugin-api.version>3.6.3</maven-plugin-api.version>
     <maven-project.version>2.2.1</maven-project.version>
     <maven-plugin-annotations.version>3.6.0</maven-plugin-annotations.version>
@@ -62,12 +71,6 @@
   </properties>
 
   <dependencies>
-    <dependency>
-      <groupId>io.github.r6d0</groupId>
-      <artifactId>jooq-ydb-codegen-testcontainers</artifactId>
-      <version>${project.version}</version>
-    </dependency>
-
     <!-- Maven -->
     <dependency>
       <groupId>org.apache.maven</groupId>
@@ -90,46 +93,55 @@
     <dependency>
       <groupId>org.testcontainers</groupId>
       <artifactId>jdbc</artifactId>
+      <version>${testcontainers.version}</version>
     </dependency>
     <dependency>
       <groupId>org.testcontainers</groupId>
       <artifactId>testcontainers</artifactId>
+      <version>${testcontainers.version}</version>
     </dependency>
 
     <!-- Flyway -->
     <dependency>
       <groupId>org.flywaydb</groupId>
       <artifactId>flyway-core</artifactId>
+      <version>${flyway-core.version}</version>
     </dependency>
     <dependency>
       <groupId>com.fasterxml.jackson.core</groupId>
       <artifactId>jackson-databind</artifactId>
+      <version>${jackson-databind.version}</version>
     </dependency>
 
     <!-- Jooq -->
     <dependency>
       <groupId>org.jooq</groupId>
       <artifactId>jooq-codegen</artifactId>
+      <version>${jooq.version}</version>
     </dependency>
 
     <!-- YDB -->
     <dependency>
       <groupId>tech.ydb.dialects</groupId>
       <artifactId>flyway-ydb-dialect</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>tech.ydb.dialects</groupId>
-      <artifactId>jooq-ydb-dialect</artifactId>
+      <version>${flyway-ydb-dialect.version}</version>
     </dependency>
     <dependency>
       <groupId>tech.ydb.jdbc</groupId>
       <artifactId>ydb-jdbc-driver</artifactId>
+      <version>${ydb-jdbc-driver.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>tech.ydb.dialects</groupId>
+      <artifactId>jooq-ydb-dialect</artifactId>
+      <version>${jooq-ydb-dialect.version}</version>
     </dependency>
 
     <!-- Lombok -->
     <dependency>
       <groupId>org.projectlombok</groupId>
       <artifactId>lombok</artifactId>
+      <version>${lombok.version}</version>
       <scope>provided</scope>
     </dependency>
 
@@ -137,6 +149,7 @@
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>
+      <version>${junit-jupiter-api.version}</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
