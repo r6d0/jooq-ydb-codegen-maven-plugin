@@ -22,7 +22,7 @@
   <groupId>io.github.r6d0</groupId>
   <artifactId>jooq-ydb-codegen-maven-plugin-parent</artifactId>
   <packaging>pom</packaging>
-  <version>0.0.2</version>
+  <version>0.0.3</version>
 
   <name>jooq-ydb-codegen-maven-plugin-parent</name>
   <description>The Maven plugin for generating jOOQ records from YDB using Testcontainers.</description>

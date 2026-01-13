@@ -21,7 +21,7 @@
   <parent>
     <groupId>io.github.r6d0</groupId>
     <artifactId>jooq-ydb-codegen-maven-plugin-parent</artifactId>
-    <version>0.0.2</version>
+    <version>0.0.3</version>
   </parent>
 
   <modelVersion>4.0.0</modelVersion>
